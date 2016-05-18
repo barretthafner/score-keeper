@@ -5,14 +5,15 @@ var p1Button = document.querySelector("#p1Score");
 var p2Button = document.querySelector("#p2Score");
 //var p2Button = document.querySelector("#p2Button");
 var resetButton	= document.querySelector("#resetButton");
-var scoreField = document.querySelector("#scoreField");
+var goalField = document.querySelector("#goalField");
 
 //spans
 var p1ScoreSpan = document.querySelector("#p1Score");
 var p2ScoreSpan = document.querySelector("#p2Score");
-var goalSpan = document.querySelector("#goalSpan");
 
-//goal selector buttons
+//goal incrementers
+var goalIncrement = document.querySelector("#increaseGoal");
+var goalDecrement = document.querySelector("#decreaseGoal");
 
 //state variables
 var p1Score = 0;
@@ -22,30 +23,29 @@ var playing = false;
 var gameOver = false;
 
 //initialization
-setTopScore(5);
+setGoal(5);
 
 
 
-//listen for number change in scoreField
-scoreField.addEventListener("change", function(){
+//listen for number change in goalField
+goalField.addEventListener("change", function(){
   //set goal
   goal = Number(this.value);
   //if goal is invalid set to 1
   if (goal < 1 || Number.isNaN(goal)) {
-    setTopScore(1);
+    setGoal(1);
   }
   else {
-    setTopScore(goal);
+    setGoal(goal);
   }
 });
 
 
 
-// listen for click player one button
+// listen for click on player one button
 p1Button.addEventListener("click", function(){
   if (!playing){
-    scoreField.disabled = true;
-    playing = true;
+    beginGame();
   }
 
   if (gameOver) {
@@ -68,8 +68,7 @@ p1Button.addEventListener("click", function(){
 // listen for click player two button
 p2Button.addEventListener("click", function(){
   if (!playing) {
-    scoreField.disabled = true;
-    playing = true;
+    beginGame();
   }
 
   if (gameOver) {
@@ -85,6 +84,19 @@ p2Button.addEventListener("click", function(){
       p2ScoreSpan.classList.add("winner");
       gameOver = true;
     }
+  }
+});
+
+// listen for incrementers
+goalIncrement.addEventListener("click", function() {
+  setGoal(++goal);
+});
+
+goalDecrement.addEventListener("click", function() {
+  if ( --goal < 1 ) {
+    setGoal(1);
+  } else {
+    setGoal(goal);
   }
 });
 
@@ -105,15 +117,26 @@ resetButton.addEventListener("click", function() {
   p2ScoreSpan.classList.remove("winner");
   p2Button.disabled = false;
 
+  //reset incrementers
+    goalIncrement.style.display = "block";
+    goalDecrement.style.display = "block";
+
   //reset state
   playing = false;
   gameOver = false;
-  scoreField.disabled = false;
+  goalField.disabled = false;
 });
 
 
 
-function setTopScore(num) {
+function setGoal(num) {
   goal = num;
-  scoreField.value = goal;
+  goalField.value = goal;
+}
+
+function beginGame() {
+    goalField.disabled = true;
+    goalIncrement.style.display = "none";
+    goalDecrement.style.display = "none";
+    playing = true;
 }

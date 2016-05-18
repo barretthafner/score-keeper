@@ -9,7 +9,8 @@
 </head>
 <body>
   <div class="container">
-    <div class="scoreboard">
+    <h2>Click a number to begin play:</h2>
+     <div class="scoreboard">
       <div id="p1Score" class="score">0</div>
       <span>to</span>
       <div id="p2Score" class="score">0</div>
@@ -17,10 +18,10 @@
 
     <div class="playTo">
       Playing to:
-      <input type="text" value="5" id="scoreField">
+      <input type="text" value="5" id="goalField">
       <div class="arrows">
-        <i id="increaseGoal" class="fa fa-angle-up customButton" aria-hidden="true"></i>
-        <i id="decreaseGoal" class="fa fa-angle-down" aria-hidden="true"></i>
+        <button id="increaseGoal" class="customButton"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+        <button id="decreaseGoal" class="customButton"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
       </div>
     </div>
     <button id="resetButton" class="customButton">Reset</button>
