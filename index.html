@@ -3,18 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Score Keeper</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="scoreKeeper.css">
 </head>
 <body>
+  <div class="container">
+    <div class="scoreboard">
+      <div id="p1Score" class="score">0</div>
+      <span>to</span>
+      <div id="p2Score" class="score">0</div>
+    </div>
 
-  <h1><span id="p1ScoreSpan">0</span> to <span id="p2ScoreSpan">0</span></h1>
+    <div class="playTo">
+      Playing to:
+      <input type="text" value="5" id="scoreField">
+      <div class="arrows">
+        <i id="increaseGoal" class="fa fa-angle-up customButton" aria-hidden="true"></i>
+        <i id="decreaseGoal" class="fa fa-angle-down" aria-hidden="true"></i>
+      </div>
+    </div>
+    <button id="resetButton" class="customButton">Reset</button>
+  </div>
 
-  <p>Playing to: <span id="topScoreSpan">0</span></p>
-
-  <input type="number" value="5" id="scoreField">
-  <button id="p1Button">Player One</button>
-  <button id="p2Button">Player Two</button>
-  <button id="resetButton">Reset</button>
 
   <script src="scoreKeeper.js"></script>
 </body>
